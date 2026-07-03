@@ -1,108 +1,62 @@
-# 🚀 Primeiros Passos com Create React App
-
-Este projeto foi criado utilizando o **Create React App**.
-
----
-
-# 📜 Scripts Disponíveis
-
-No diretório do projeto, você pode executar os seguintes comandos:
-
-## ▶️ `npm start`
-
-Inicia a aplicação em **modo de desenvolvimento**.
-
-Após executar o comando, abra:
-
-```
-http://localhost:3000
-```
-
-A aplicação será atualizada automaticamente sempre que você salvar alterações no código.
-
-Caso existam erros de lint, eles serão exibidos no terminal ou no console do navegador.
+# 🎬 Movie Application (Movies SPA) - React & TMDB API
+Um aplicativo SPA (Single Page Application) responsivo desenvolvido em **React** que consome dados reais da API **TMDB (The Movie Database)** para listar os filmes mais populares em cartaz. O projeto foi projetado com foco em arquitetura limpa, utilizando camadas isoladas de serviços HTTP, hooks de estado customizados e roteamento dinâmico.
 
 ---
-
-## 🧪 `npm test`
-
-Inicia o executor de testes em modo interativo (*watch mode*).
-
-Mais informações sobre testes podem ser encontradas na documentação do React.
-
+## 🎯 Principais Recursos
+- **Roteamento Centralizado (React Router Dom v6):** Utilização do método moderno `createBrowserRouter` para controle de rotas.
+- **Root Layout Pattern:** Estruturação de uma casca visual compartilhada (`RootLayout.js`) contendo o cabeçalho (`<Header />`) e o ponto de ancoragem de páginas filhas (`<Outlet />`).
+- **Cliente HTTP Dedicado (Axios):** Centralização de chamadas HTTP no arquivo [config/http.js](file:///C:/Users/TALITA%20CASTRO/.gemini/antigravity/scratch/movie-web-react/src/config/http.js), configurado com o token Bearer JWT de autorização do TMDB.
+- **Camada de Serviços Abstraída:** Centralização dos endpoints do TMDB (créditos, vídeos, avaliações, recomendações, similares e detalhes) no arquivo [services/movies.services.js](file:///C:/Users/TALITA%20CASTRO/.gemini/antigravity/scratch/movie-web-react/src/services/movies.services.js).
+- **Hooks Customizados:** Isolamento de chamadas assíncronas e lógica de ciclo de vida em hooks reutilizáveis (`useMovies` e `useMovie`).
 ---
-
-## 📦 `npm run build`
-
-Cria uma versão otimizada da aplicação para **produção** na pasta:
-
-```
-build/
-```
-
-Durante o processo:
-
-- Os arquivos são minificados;
-- Os nomes dos arquivos recebem hashes para melhor controle de cache;
-- A aplicação é otimizada para obter o melhor desempenho possível.
-
-Após a conclusão, sua aplicação estará pronta para ser publicada.
-
----
-
-## ⚙️ `npm run eject`
-
-> **Atenção:** esta é uma operação **irreversível**.
-
-Caso você não esteja satisfeito com as configurações padrão do Create React App, é possível executar:
-
+## 📂 Estrutura do Projeto
 ```bash
-npm run eject
+movie-web-react/
+├── public/
+│   ├── index.html           # Documento HTML base
+│   └── manifest.json        # Arquivo de manifesto PWA
+├── src/
+│   ├── components/
+│   │   └── Header.js        # Cabeçalho da aplicação contendo os links de navegação (`Link`)
+│   ├── config/
+│   │   └── http.js          # Configuração da instância Axios e cabeçalhos de autenticação do TMDB
+│   ├── hooks/
+│   │   └── useMovies.js     # Hooks customizados para gerenciar o estado dos filmes
+│   ├── services/
+│   │   └── movies.services.js# Abstração de endpoints HTTP e serviços da API
+│   ├── views/
+│   │   ├── Home.js          # Página inicial simples (Placeholder)
+│   │   ├── Movies.js        # Página de listagem de filmes populares
+│   │   └── RootLayout.js    # Layout mestre que compartilha o Header entre as rotas
+│   ├── App.js               # Orquestrador que aplica as rotas na aplicação
+│   ├── index.css            # Folha de estilo básica
+│   ├── index.js             # Ponto de entrada do React que inicializa o virtual DOM
+│   ├── routes.js            # Definição e mapeamento do objeto de rotas da SPA
+│   └── [arquivos adicionais]
+├── package.json             # Registro de scripts e dependências do npm
+└── README.md                # Documentação do projeto
 ```
-
-Esse comando irá:
-
-- Copiar todas as configurações para dentro do projeto;
-- Tornar editáveis arquivos como:
-  - Webpack
-  - Babel
-  - ESLint
-  - Scripts de build
-- Remover a dependência única do Create React App.
-
-Após executar o **eject**, você passa a ser responsável pela manutenção dessas configurações.
-
-> Na maioria dos projetos, **não é necessário utilizar o eject**.
+---
+## 🛠️ Tecnologias Utilizadas
+- **React v19.1.0:** Biblioteca front-end reativa (última versão estável).
+- **React Router Dom v6.30:** Roteador moderno declarativo de páginas.
+- **Axios v1.11.0:** Cliente HTTP baseado em Promessas.
+- **TMDB API v3:** Provedor oficial de metadados de filmes.
 
 ---
-
-# 📚 Saiba Mais
-
-- Documentação do **Create React App**
-- Documentação oficial do **React**
-
----
-
-# 📖 Recursos da Documentação
-
-Os tópicos abaixo foram movidos para a documentação oficial:
-
-- Code Splitting
-- Análise do tamanho do Bundle
-- Progressive Web App (PWA)
-- Configurações Avançadas
-- Deploy da aplicação
-- Solução de problemas quando `npm run build` falha ao minificar
-
-Consulte a documentação oficial para obter informações detalhadas sobre esses assuntos.
-
----
-
-# ✅ Resumo dos Comandos
-
-| Comando | Descrição |
-|----------|-----------|
-| `npm start` | Inicia o servidor de desenvolvimento |
-| `npm test` | Executa os testes |
-| `npm run build` | Gera a versão de produção |
+## 💻 Como Rodar o Projeto
+### Requisitos:
+Certifique-se de possuir o [Node.js](https://nodejs.org/) instalado em sua máquina.
+### Execução:
+1. Abra o terminal na raiz do projeto.
+2. Instale as dependências executando:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor em modo de desenvolvimento local:
+   ```bash
+   npm start
+   ```
+4. Acesse pelo navegador em: [http://localhost:3000](http://localhost:3000).
+5. Certifique-se de possuir acesso à internet para realizar as requisições à API do TMDB.
 | `npm run eject` | Expõe as configurações internas do projeto (irreversível) |
